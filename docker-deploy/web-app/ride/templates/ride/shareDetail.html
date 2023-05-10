@@ -1,0 +1,48 @@
+<head>
+    <title>share_detail</title>
+</head>
+
+<body>
+    <h1>Ride Share Detail</h1>
+    <form action="/ride/shareDetail/{{ride.id}}/?party_num={{sharer_num}}" method="post">
+        {% csrf_token %}
+        {% for message in messages%}
+            <p id="messages">{{message}}</p>
+        {% endfor %}
+        <p>
+            <label for="ride_id">Ride_ID: {{ ride.id }}</label>
+        </p>
+
+        <p>
+            <label for="owner">Owner: {{ ride.owner }}</label>
+        </p>
+        <p>
+            <label for="destination">Destination: {{ ride.destination }}</label>
+        </p>
+        <p>
+            <label for="arrival_time">Arrive time: {{ ride.arrival_time }}</label>
+        </p>
+        <p>
+            <label for="passenger_number">Passenger number: {{ ride.passenger_number }}</label>
+        </p>
+
+        {% for sharer in ride.sharer.all %}
+            <a>{{ sharer.username }}</a>
+        {% endfor %}
+
+        <p>
+            <label for="vehicle_type">Vehicle type: {{ ride.vehicle_type }}</label>
+        </p>
+        <p>
+            <label for="special_request">Special request: {{ ride.special_request }}</label>
+        </p>
+        <p>
+            <a>Sharer want to add: {{ sharer_num }}</a>
+        </p>
+        <div>
+            <a href="/ride/shareFilter/">Back to filter</a>
+            <button type="submit">join</button>
+        </div>
+        
+    </form>
+</body>

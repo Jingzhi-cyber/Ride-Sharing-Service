@@ -1,0 +1,40 @@
+<head>
+    <title>ride_detail</title>
+</head>
+
+<body>
+    <h1>Ride Detail</h1>
+    <form action="/ride/driver_rideEdit/{{ride_id}}/" method="post">
+        {% csrf_token %}
+        {% for message in messages%}
+            <p id="messages">{{message}}</p>
+        {% endfor %}
+        <p>
+            <label for="owner">Owner: {{ ride.owner }}</label>
+        </p>
+        <p>
+            <label for="destination">Destination: {{ ride.destination }}</label>
+        </p>
+        <p>
+            <label for="arrival_time">Arrive time: {{ ride.arrival_time }}</label>
+        </p>
+        <p>
+            <label for="passenger_number">Passenger number: {{ ride.passenger_number }}</label>
+        </p>
+        <p>
+            <label for="vehicle_type">Vehicle type: {{ ride.vehicle_type }}</label>
+        </p>
+        <p>
+            <label for="special_request">Special request: {{ ride.special_request }}</label>
+        </p>
+        {% for pa in sharer_list %}
+            <a>Sharer:{{ pa.user.username }} with party number: {{pa.party_number}}</a>
+        {% endfor %}
+        <div>
+            <a href="/ride/driver_ride/">Back to ride list</a>
+            <a href="/ride/driver_rideCancel/?ride={{ride_id}}">Cancel</a>
+            <button type="submit">complete</button>
+        </div>
+        
+    </form>
+</body>

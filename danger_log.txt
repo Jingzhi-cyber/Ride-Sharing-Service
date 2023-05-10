@@ -1,0 +1,75 @@
+1.25
+========================================
+Q: The user can use the same email address, which will cause the email recieving problems.
+S: Use the objects filter to check if the email is used. Same idea for later password check.
+
+Q: The Forms in django sometimes has the invalid problem.
+S: The Forms require database restart and all data should in correct input format. May be we can add a indication about potential problems of user's input.
+
+1.26
+========================================
+Q: The user can login multiple times.
+S: Use the sessions to mark a logged in status.
+
+Q: The user log out does not work.
+S: The cookie(?) will record the logged in information.
+
+Use the django provided User from now
+
+1.27
+========================================
+Q: The user does not have the driver define property.
+S: Add a field to the User
+(Need extend the AbstractUser from the every beginning)
+S: Use an OnetoOneField for user information extension
+
+1.28
+========================================
+Q: User profile can only change password
+S: Add judge strategy to check if other input is blank
+
+Q: User password is null and it accepts
+S: Add check strategy to guarantee.
+
+1.29
+========================================
+Q: The user can still visit the later pages without log in
+S: Use the login_required validator
+
+1.30
+========================================
+Q: Driver license is not unique
+S: Filter the license number
+
+1.31
+========================================
+Q: Driver can search all the open orders
+S: Use the filter to filter the capacity & special request
+
+Q: How to exclude one circumstance
+S: Use the SQL search, import Q to search. Like filter(~Q(xxx) & Q(xxx)) 
+
+2.1
+========================================
+Q: Cannot only edit email without change password
+S: Use multiple check strategy
+
+2.3
+========================================
+Q: Data base cannot migrate
+S: Drop all tables to solve
+
+2.5
+========================================
+Q: Sometimes email sending will fail
+S: When send the email, some host do not support stmp.
+
+2.6
+========================================
+Q: When put into docker, str error will appear
+S: Give the permit to machine using chmod
+
+2.7
+========================================
+Q: Testing in the docker
+S: Find some more bugs and fix them.

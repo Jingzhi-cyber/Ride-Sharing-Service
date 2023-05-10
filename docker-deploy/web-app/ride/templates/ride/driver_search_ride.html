@@ -1,0 +1,35 @@
+<head>
+    <title>driver_ride_search</title>
+</head>
+
+<body>
+    <h1>All open ride</h1>
+
+    {% csrf_token %}
+    <div>
+    {% for ride in ride_list%}
+    <p>
+        <a>Owner: {{ride.owner}} </a>
+        <a>Destination: {{ride.destination }} </a>
+        <a>Arrival time: {{ride.arrival_time }} </a>
+        <a>Passenger number: {{ride.passenger_number }} </a>
+        <a>Vehicle required type: {{ride.vehicle_required}}</a>
+        {% if ride.is_share == True %}
+            {% for pa in ride.sharers.all %}
+                <a>Sharer:{{ pa.username }}
+                </a>
+            {% endfor %}
+        {% endif %}
+        <a href="/ride/driverConfirm/{{ride.id}}/">Detail</a>
+    </p>
+    {% endfor %}
+    </div>
+
+    <div>
+        <p>
+            <a href="/ride/driverHome/">Back to driver home</a>
+        </p>
+        
+    </div>
+        
+</body>

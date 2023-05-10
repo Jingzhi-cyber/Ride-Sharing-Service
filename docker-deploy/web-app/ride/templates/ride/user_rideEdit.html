@@ -1,0 +1,61 @@
+<head>
+    <title>ride_edit</title>
+</head>
+
+<body>
+    <h1>User Ride Edit</h1>
+    <form action="/ride/user_rideEdit/{{ride_id}}/" method="post">
+        {% csrf_token %}
+        {% for message in messages%}
+            <p id="messages">{{message}}</p>
+        {% endfor %}
+        <!-- <p>
+            <label for="ride_id">ride id: {{ ride_id }}</label>
+        </p>
+        <p>
+            <label for="owner_num">My party number: {{ ride.passenger_number }}</label>
+        </p> -->
+
+        <p>
+            <label for="destination">Destination:</label>
+            <input type="text" id="destination" name="destination" value="{{ride.destination}}">
+        </p>
+        <p>
+            <label for="arrival_time">Arrive time:</label>
+            <input type="datetime-local" id="arrival_time" name="arrival_time" value="{{ride.arrival_time}}">
+        </p>
+        <p>
+            <label for="passenger_number">Passenger number:</label>
+            <input type="number" id="passenger_number" name="passenger_number" value="{{ride.passenger_number}}">
+        </p>
+        {% if ride.is_share == True %}
+            {% for sharer in share_list %}
+                <a>Sharer: {{ sharer.user.username }} with {{sharer.party_number}}</a>
+            {% endfor %}
+        {% endif %}
+        <div class="col-md-6">
+            <label for="vehicle_type" class="form-label">Which type of vehicle do you prefer? (optional)</label>
+            <select class="form-select" id="vehicle_type" name="vehicle_type">
+              <option value="">Choose...</option>
+              <option>car</option>
+              <option>van</option>
+              <option>mini_bus</option>
+              <option>trunck</option>
+            </select>
+        </div>
+        <!-- <p>
+            <label for="vehicle_required">Vehicle type:</label>
+            <input type="text" id="vehicle_required" name="vehicle_required" placeholder="{{ride.vehicle_required}}">
+        </p> -->
+        <p>
+            <label for="special_request">Special request:</label>
+            <input type="text" id="special_request" name="special_request"value="{{ride.special_request}}">
+        </p>
+        <div>
+            <a href="/ride/user_rideInfo/">Back</a>
+            <a href="/ride/ownerCancel/?ride={{ride_id}}">Cancel</a>
+            <button type="submit">save changes</button>
+        </div>
+        
+    </form>
+</body>

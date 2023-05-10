@@ -1,0 +1,64 @@
+<head>
+    <title>ride_detail</title>
+</head>
+
+<body>
+    <h1>Ride Detail</h1>
+    <form action="/ride/ride_detail/{{ride_id}}/" method="post">
+        {% csrf_token %}
+        {% for message in messages%}
+            <p id="messages">{{message}}</p>
+        {% endfor %}
+        <p>
+            <label for="destination">Destination: {{ ride.destination }}</label>
+        </p>
+        <p>
+            <label for="arrival_time">Arrive time: {{ ride.arrival_time }}</label>
+        </p>
+        <p>
+            <label for="total_number">Total passenger number: {{ ride.total_number }}</label>
+        </p>
+        <p>
+            <label for="owner">Owner: {{ ride.owner.username }}</label>
+        </p>
+        <p>
+            <label for="passenger_number">Owner party number: {{ ride.passenger_number }}</label>
+        </p>
+        {% if ride.is_share == True %}
+            {% for sharer in share_list %}
+                <a>Sharer: {{ sharer.user.username }} with party number:{{sharer.party_number}}</a>
+            {% endfor %}
+        {% endif %}
+        <p>
+            <label for="vehicle_type">Vehicle required: {{ ride.vehicle_required }}</label>
+        </p>
+        <p>
+            <label for="special_request">Special request: {{ ride.special_request }}</label>
+        </p>
+        {% if ride.status != "open" %}
+            <p>
+                <label for="driver_name">Driver name: {{ ride.driver.username }}</label>
+            </p>
+            <p>
+                <label for="vehicle_type">Vehicle type: {{ ride.vehicle_type }}</label>
+            </p>
+            <p>
+                <label for="vehicle license">Vehicle license: {{ ride.driver.vehicle.license_number }}</label>
+            </p>
+            <p>
+                <label for="vehicle_type">Vehicle capacity: {{ ride.driver.vehicle.max_capacity }}</label>
+            </p>
+        {% endif %}
+
+        <!-- {% if user.username == ride.driver.username %}
+        <div>
+            <a href="/ride/d_search_ride/">Back to Search</a>
+            <button type="submit">confirm</button>
+        </div>
+        {% else %} -->
+        <div>
+            <a href="/ride/user_rideInfo/">Back to ride list</a>
+        </div>
+        <!-- {% endif %} -->
+    </form>
+</body>

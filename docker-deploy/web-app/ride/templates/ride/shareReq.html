@@ -1,0 +1,30 @@
+<head>
+    <title>ride_share_search</title>
+</head>
+
+<body>
+    <h1>All open and sharable ride</h1>
+
+    {% csrf_token %}
+    <div>
+    {% for ride in ride_list%}
+    <p>
+        <a>Ride_id: {{ride.id}}</a>
+        <a>Owner: {{ride.owner}} </a>
+        <a>Destination: {{ride.destination }} </a>
+        <a>Arrival time: {{ride.arrival_time }} </a>
+        <a>Passenger number: {{ride.passenger_number }} </a>
+        <a>Vehicle type: {{ride.vehicle_type}}</a>
+        <a href="/ride/ride_share_detail/{{ride.id}}/">Detail</a>
+    </p>
+    {% endfor %}
+    </div>
+
+    <div>
+        <p>
+            <a href="/ride/shareFilter/">Back to share filter</a>
+        </p>
+        
+    </div>
+        
+</body>

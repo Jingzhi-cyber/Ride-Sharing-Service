@@ -1,0 +1,71 @@
+{% extends './base.html' %}
+{% block sidebar %}
+<div class="container-fluid">
+  <div class="row">
+    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+      <div class="position-sticky pt-3 sidebar-sticky">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/ride/driverHome/">
+              <span data-feather="home" class="align-text-bottom"></span>
+              Driver home
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/ride/driver_ride/">
+              <span data-feather="file" class="align-text-bottom"></span>
+              My orders
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/ride/d_search_ride/">
+              <span data-feather="shopping-cart" class="align-text-bottom"></span>
+              Availiable orders to take
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/ride/vehicle_edit/">
+              <span data-feather="users" class="align-text-bottom"></span>
+              Edit your vehicle info
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/ride/dashboard/">
+              <span data-feather="bar-chart-2" class="align-text-bottom"></span>
+              Rrturn to user dashboard
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/ride/driver_quit/">
+              <span data-feather="layers" class="align-text-bottom"></span>
+              Quit driver
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>>
+</div>>
+{% endblock %}
+
+{% block content %}
+
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h1">Driver home</h1>
+  </div>
+
+  {% csrf_token %}
+  {% for message in messages%}
+      <h6 class="h6" id="messages">{{message}}</h6>
+  {% endfor %}
+
+  <div class="p-4 p-md-5 mb-4 rounded text-bg-dark">
+    <div class="col-md-6 px-0">
+      <h1 class="display-4 fst-italic">Welcome to Driver Home, {{user.username}} ╰(○'◡'○)╮</h1>
+      <p class="lead my-3">Thank you signing up tp be our driver! Check the left sidebar if you are ready to start an order!</p>
+      <p class="lead mb-0"><a href="/ride/d_search_ride/" class="text-white fw-bold">Click to see availiable rides for you</a></p>
+    </div>
+  </div>
+</main>>
+  {% endblock %}
